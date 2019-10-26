@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/routes', 'HomeController@admin')->middleware('admin');
+Route::resource('restaurants', 'RestaurantsController');
+Route::get('admin/routes/restaurants', 'RestaurantsController@index')->name('restaurants');
