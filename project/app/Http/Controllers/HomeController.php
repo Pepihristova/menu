@@ -33,4 +33,8 @@ class HomeController extends Controller
         return view('admin');
 
     }
+    public function menu()
+    {
+        return view('menus.choose_menu');
+    }
 }

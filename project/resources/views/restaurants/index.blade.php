@@ -25,11 +25,7 @@
             <p><input type="checkbox" id="restaurant_id" name="restaurant_id[]" value="{{$restaurant->id}}"> {{$restaurant->name}}</p>
         </label>
     @endforeach 
-    <h2>Брой хора</h2>
-    <input type="number" name="people" min="1">
-    <h2>Сума с която разполагате</h2>
-    <input type="number" name="price" min="1">
-    <h2>Степен на менюто</h2>
-    <input type="number" name="price" min="1">
 
-<a href="{{ route('restaurants.create') }}">Create Room</a>
+<a href="{{ route('restaurants.create') }}">Create Restaurant</a>
+<a href="{{ route('choose_menu') }}">Add to the menu</a>
+
