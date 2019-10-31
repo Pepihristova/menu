@@ -9,24 +9,24 @@ class FourDegreeMenu extends Model
 	protected $fillable = [
         'salad_id', 'drink_id', 'main_id', 'dessert_id', 'price', 'restaurant_id', 
     ];
-     public function salad_four()
+     public function salad()
     {
-    	return $this->hasMany('App\Salad');
+    	return $this->belongsTo('App\Salad');
     }
-    public function main_four()
+    public function main()
     {
-    	return $this->hasMany('App\Main');
+    	return $this->belongsTo('App\Main');
     }
-    public function drink_four()
+    public function drink()
     {
-    	return $this->hasMany('App\Drink');
+    	return $this->belongsTo('App\Drink');
     }
-    public function dessert_four()
+    public function dessert()
     {
-    	return $this->hasMany('App\Dessert');
+    	return $this->belongsTo('App\Dessert');
     }
-    public function restaurant_four()
+    public function restaurant()
     {
-    	return $this->hasMany('App\Restauranat');
+    	return $this->belongsTo('App\Restaurant');
     }
 }

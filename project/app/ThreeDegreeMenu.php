@@ -9,20 +9,20 @@ class ThreeDegreeMenu extends Model
     protected $fillable = [
         'salad_id', 'drink_id', 'main_id', 'price', 'restaurant_id', 
     ];
-     public function salad_three()
+     public function salad()
     {
-    	return $this->hasMany('App\Salad');
+    	return $this->belongsTo('App\Salad');
     }
-    public function main_three()
+    public function main()
     {
-    	return $this->hasMany('App\Main');
+    	return $this->belongsTo('App\Main');
     }
-    public function drink_three()
+    public function drink()
     {
-    	return $this->hasMany('App\Drink');
+    	return $this->belongsTo('App\Drink');
     }
-    public function restaurant_three()
+    public function restaurant()
     {
-    	return $this->hasMany('App\Restauranat');
+    	return $this->belongsTo('App\Restaurant');
     }
 }

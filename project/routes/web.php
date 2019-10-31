@@ -24,3 +24,6 @@ Route::get('admin/routes/restaurants', 'RestaurantsController@index')->name('res
 Route::get('/choose_menu', 'HomeController@menu')->name('choose_menu');
 Route::resource('onedegree', 'OneDegreeMenusController');
 Route::resource('onedegree_choice', 'OneDegreeChoicesController');
+Route::resource('twodegree', 'TwoDegreeMenusController');
+Route::resource('threedegree', 'ThreeDegreeMenusController');
+Route::resource('fourdegree', 'FourDegreeMenusController');

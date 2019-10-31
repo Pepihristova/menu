@@ -13,9 +13,10 @@ class OneDegreeChoicesController extends Controller
      */
     public function index()
     {
+       
         $menus = OneDegreeMenu::all();
-       $random = $menus->random();
-       $price = request('price');
+        $random = $menus->random();
+        $price = request('price');
         return view('onedegree_choice.index', compact('random','price'));
     }
 

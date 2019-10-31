@@ -15,7 +15,7 @@
                     <h2>Брой хора в групата</h2>
                     <input type="number" name="number">
                     <h2>Сума с която разполагате</h2>
-                    <input type="number" name="price">
+                    <input type="number" name="price" id="price">
                     <h2>Меню</h2>
                     <select onsubmit="location = this.value;" id="menu" >
                         <option value="{{ route('onedegree_choice.index') }}">Едностепенно</option>
@@ -33,7 +33,10 @@
 @endsection
 <script type="text/javascript">
     function gotosite() {
-  window.location = document.getElementById("menu").value; // JQuery:  $("#menu").val();
+        var query = document.getElementById("menu").value;
+        var pr = document.getElementById('price').value;
+        console.log(query+'?price='+ pr)
+        window.location = query+'?price='+ pr; // JQuery:  $("#menu").val();
 }
 
 </script>

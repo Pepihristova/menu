@@ -9,12 +9,12 @@ class OneDegreeMenu extends Model
     protected $fillable = [
         'salad_id', 'price', 'restaurant_id', 
     ];
-     public function salad_one()
+     public function salad()
     {
     	return $this->belongsTo('App\Salad');
     }
-    public function restaurant_one()
+    public function restaurant()
     {
-    	return $this->hasMany('App\Restauranat');
+    	return $this->belongsTo('App\Restaurant');
     }
 }

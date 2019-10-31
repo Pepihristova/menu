@@ -1,12 +1,16 @@
 @extends('layouts.app')
 <table class="table table-bordered" border="1">
+
 	@foreach( $menus as $menu )
 		<tr>
 			<td>
-				<a href="{{ route('onedegree.show', $menu->id)}}">{{$menu->salad_one->name}}</a>
+				<a href="{{ route('onedegree.show', $menu->id)}}">{{$menu->salad->name}}</a>
 			</td>
 			<td>
 				<a href="{{ route('onedegree.show', $menu->id)}}">{{$menu->price}}</a>
+			</td>
+			<td>
+				<a href="{{ route('onedegree.show', $menu->id)}}">{{$menu->restaurant->name}}</a>
 			</td>
 			<td>
 				<a href="{{ route('onedegree.edit', $menu->id) }}" class="btn btn-warning">update</a>

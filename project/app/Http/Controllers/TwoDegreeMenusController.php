@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\OneDegreeMenu;
+use App\TwoDegreeMenu;
 use App\Salad;
 use App\Restaurant;
+use App\Drink;
 use Illuminate\Http\Request;
 
-class OneDegreeMenusController extends Controller
+class TwoDegreeMenusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class OneDegreeMenusController extends Controller
      */
     public function index()
     {
-        $menus = OneDegreeMenu::all();
-        return view('onedegree.index', compact('menus'));
+        $menus = TwoDegreeMenu::all();
+        return view('twodegree.index', compact('menus'));
     }
 
     /**
@@ -30,7 +31,9 @@ class OneDegreeMenusController extends Controller
         $salads_arr = $salads->pluck('name','id');
         $restaurants = Restaurant::all();
         $restaurants_arr = $restaurants->pluck('name','id');
-        return view('onedegree.create', compact('courses_arr', 'restaurants_arr', 'salads_arr'));
+        $drinks = Drink::all();
+        $drinks_arr = $drinks->pluck('name','id');
+        return view('twodegree.create', compact('courses_arr', 'restaurants_arr', 'salads_arr', 'drinks_arr'));
     }
 
     /**
@@ -41,12 +44,13 @@ class OneDegreeMenusController extends Controller
      */
     public function store(Request $request)
     {
-        OneDegreeMenu::create([
+         TwoDegreeMenu::create([
         'salad_id' => $request->salad_id,
         'price' => $request->price,
         'restaurant_id' => $request->restaurant_id,
+        'drink_id' => $request->drink_id,
         ]);
-        return redirect()->route('onedegree.index');
+        return redirect()->route('twodegree.index');
     }
 
     /**
@@ -68,12 +72,14 @@ class OneDegreeMenusController extends Controller
      */
     public function edit($id)
     {
-        $menu = OneDegreeMenu::find($id);
+        $menu = TwoDegreeMenu::find($id);
         $salads = Salad::all();
         $salads_arr = $salads->pluck('name', 'id');
         $restaurants = Restaurant::all();
         $restaurants_arr = $restaurants->pluck('name', 'id');
-        return view('onedegree.edit', compact('salads_arr', 'restaurants_arr', 'menu')); 
+        $drinks = Drink::all();
+        $drinks_arr = $drinks->pluck('name', 'id');
+        return view('twodegree.edit', compact('salads_arr', 'restaurants_arr', 'menu', 'drinks_arr')); 
     }
 
     /**
@@ -85,13 +91,14 @@ class OneDegreeMenusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $menu = OneDegreeMenu::find($id);
+        $menu = TwoDegreeMenu::find($id);
         $menu->update([
             'salad_id' => $request->salad_id,
             'price'=> $request->price,
             'restaurant_id'=> $request->restaurant_id,
+            'drink_id'=> $request->drink_id,
         ]);
-        return redirect()->route('onedegree.index');
+        return redirect()->route('twodegree.index');
     }
 
     /**
@@ -102,8 +109,8 @@ class OneDegreeMenusController extends Controller
      */
     public function destroy($id)
     {
-        $menu = OneDegreeMenu::find($id);
+        $menu = TwoDegreeMenu::find($id);
         $menu->delete();
-        return redirect()->route('onedegree.index') ;   
+        return redirect()->route('twodegree.index') ;
     }
 }
