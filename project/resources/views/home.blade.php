@@ -13,7 +13,7 @@
                     @else
                     <div class=”panel-heading”>Normal User</div>
                     <h2>Брой хора в групата</h2>
-                    <input type="number" name="number">
+                    <input type="number" name="number" id="number">
                     <h2>Сума с която разполагате</h2>
                     <input type="number" name="price" id="price">
                     <h2>Меню</h2>
@@ -35,8 +35,10 @@
     function gotosite() {
         var query = document.getElementById("menu").value;
         var pr = document.getElementById('price').value;
-        console.log(query+'?price='+ pr)
-        window.location = query+'?price='+ pr; // JQuery:  $("#menu").val();
+        var num = document.getElementById('number').value;
+        console.log(query+'?price='+ pr +'?number=' + num)
+        var string_url = "?price=" + pr + '&number=' + num;
+        window.location = query+string_url; // JQuery:  $("#menu").val();
 }
 
 </script>
