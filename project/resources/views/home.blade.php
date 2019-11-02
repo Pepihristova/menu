@@ -19,9 +19,9 @@
                     <h2>Меню</h2>
                     <select onsubmit="location = this.value;" id="menu" >
                         <option value="{{ route('onedegree_choice.index') }}">Едностепенно</option>
-                        <option value="1">Двустепенно</option>
-                        <option value="1">Тристепенно</option>
-                        <option value="1">Четиристепенно</option>
+                        <option value="{{ route('twodegree_choice.index') }}">Двустепенно</option>
+                        <option value="{{ route('threedegree_choice.index') }}">Тристепенно</option>
+                        <option value="{{ route('fourdegree_choice.index') }}">Четиристепенно</option>
                     </select>
                     <button type="submit" onclick="gotosite()">Update project</button>
                     @endif

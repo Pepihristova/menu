@@ -27,3 +27,6 @@ Route::resource('onedegree_choice', 'OneDegreeChoicesController');
 Route::resource('twodegree', 'TwoDegreeMenusController');
 Route::resource('threedegree', 'ThreeDegreeMenusController');
 Route::resource('fourdegree', 'FourDegreeMenusController');
+Route::resource('twodegree_choice', 'TwoDegreeChoicesController');
+Route::resource('threedegree_choice', 'ThreeDegreeChoicesController');
+Route::resource('fourdegree_choice', 'FourDegreeChoicesController');
