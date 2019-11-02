@@ -7,5 +7,5 @@
 <p>{{$price}}</p>
 <p>{{$number}}</p>
 <p>{{$price_for_one}}</p>
-
+<p>{{$restaurant_id}}</p>
 @endsection

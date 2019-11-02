@@ -23,6 +23,14 @@
                         <option value="{{ route('threedegree_choice.index') }}">Тристепенно</option>
                         <option value="{{ route('fourdegree_choice.index') }}">Четиристепенно</option>
                     </select>
+                    
+                    <p>Restaurant name</p>
+                        <select name="stuff_type" id="restaurant_id">
+                         @foreach($restaurants as $restaurant)
+                                <option value="{{ $restaurant->id }}">{{ $restaurant->name}}</option>
+                         @endforeach 
+                        </select>
+                    
                     <button type="submit" onclick="gotosite()">Update project</button>
                     @endif
                 </div>
@@ -36,8 +44,10 @@
         var query = document.getElementById("menu").value;
         var pr = document.getElementById('price').value;
         var num = document.getElementById('number').value;
-        console.log(query+'?price='+ pr +'?number=' + num)
-        var string_url = "?price=" + pr + '&number=' + num;
+         var e = document.getElementById("restaurant_id");
+        var restaurant_id = e.options[e.selectedIndex].value;
+        console.log(query+'?price='+ pr +'?number=' + num+ '?restaurant_id='+ restaurant_id)
+        var string_url = "?price=" + pr + '&number=' + num +'&restaurant_id=' +restaurant_id ;
         window.location = query+string_url; // JQuery:  $("#menu").val();
 }
 
