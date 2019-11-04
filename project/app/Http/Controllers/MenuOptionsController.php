@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\MenuOption;
 use App\OneDegreeMenu;
+use App\TwoDegreeMenu;
+use App\ThreeDegreeMenu;
+use App\FourDegreeMenu;
 use Illuminate\Http\Request;
 
 class MenuOptionsController extends Controller
@@ -42,6 +45,9 @@ class MenuOptionsController extends Controller
         $menu_three_id = request('menu_three_id');
         $menu_four_id = request('menu_four_id');
         $menu=OneDegreeMenu::find($menu_one_id);
+        $menu_two=TwoDegreeMenu::find($menu_two_id);
+        $menu_three=ThreeDegreeMenu::find($menu_three_id);
+        $menu_four=FourDegreeMenu::find($menu_four_id);
         MenuOption::create([
             'menu_one_id'=>$menu_one_id,
             'menu_two_id'=>$menu_two_id,
@@ -53,7 +59,7 @@ class MenuOptionsController extends Controller
             'status'=>'1'
 
         ]);
-        return view('options.index', compact('price', 'number', 'menu_one_id', 'menu_two_id', 'menu_three_id', 'menu_four_id', 'menu' ));
+        return view('options.index', compact('price', 'number', 'menu_one_id', 'menu_two_id', 'menu_three_id', 'menu_four_id', 'menu', 'menu_two', 'menu_three', 'menu_four' ));
     }
 
     /**
@@ -103,17 +109,20 @@ class MenuOptionsController extends Controller
     public function partly(Request $request)
     {
         $menu_one_id = request('menu_one_id');
+        $number_people = request('number_people');
         $menu=OneDegreeMenu::find($menu_one_id);
         $price_req = request('current_menu_price');
         $number = request('accepted');
         $price = $price_req-($menu->price*$number);
-        
+        $price_for_one = $price/$number;
         
         $menu_two_id = request('menu_two_id');
         $menu_three_id = request('menu_three_id');
         $menu_four_id = request('menu_four_id');
         
-        MenuOption::create([
+        
+        while ($number_people>$number) {
+            MenuOption::create([
             'menu_one_id'=>$menu_one_id,
             'menu_two_id'=>$menu_two_id,
             'menu_three_id'=>$menu_three_id,
@@ -124,6 +133,19 @@ class MenuOptionsController extends Controller
             'status'=>'1'
 
         ]);
-        return view('options.index', compact('price', 'number', 'menu_one_id', 'menu_two_id', 'menu_three_id', 'menu_four_id', 'menu' ));
+            $random = OneDegreeMenu::inRandomOrder()
+        ->where([
+                ['price', '<', $price_for_one],
+                ['restaurant_id', '=', $menu->restaurant_id]
+            ])->first();
+       
+       
+        return view('onedegree_choice.index', compact('random','price', 'number', 'price_for_one','menu'));
+        }
+            return view('options.index', compact('price', 'number', 'menu_one_id', 'menu_two_id', 'menu_three_id', 'menu_four_id', 'menu' ));
+        
+        
+
+        
     }
 }
