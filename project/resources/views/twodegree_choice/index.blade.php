@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+@if(!is_null($random))
+
 <table border="1" bgcolor="white">
 	<tr>
 		<td>Меню №</td>
@@ -19,10 +21,8 @@
 	{{ csrf_field() }}
 	<button type="submit" class="btn btn-danger">Приеми</button>
 </form>
-
-<form method="post" action="{{ action('MenuOptionsController@partly', ['number_people' => $number,'current_menu_price' => $price, 'menu_one_id' => $random->id, 'menu_two_id' => NULL, 'menu_three_id' => NULL, 'menu_four_id' => NULL ]) }}" >
-	{{ csrf_field() }}
-	<input type="number" name="accepted">
-	<button type="submit" class="btn btn-danger">Изпрати</button>
-</form>
+@else
+	<h1>В този ресторант няма подходящо за вас меню!</h1>
+	<a href="{{url()->previous()}}" >Върни се обратно</a>
+@endif
 @endsection

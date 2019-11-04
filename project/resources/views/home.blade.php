@@ -14,7 +14,7 @@
                     <div class=”panel-heading”>Normal User</div>
                     <h2>Брой хора в групата</h2>
                     <input type="number" name="number" id="number">
-                    <h2>Сума с която разполагате</h2>
+                    <h2>Сума, с която разполагате</h2>
                     <input type="number" name="price" id="price">
                     <h2>Меню</h2>
                     <select onsubmit="location = this.value;" id="menu" >
