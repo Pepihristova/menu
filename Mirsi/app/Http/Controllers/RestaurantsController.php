@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Restaurant;
 use Illuminate\Http\Request;
 
-class MealController extends Controller
+class RestaurantsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,8 @@ class MealController extends Controller
      */
     public function index()
     {
-        //
+        $restaurants = Restaurant::all();
+        return view('restaurants.index', compact('restaurants'));
     }
 
     /**
@@ -23,7 +24,7 @@ class MealController extends Controller
      */
     public function create()
     {
-        //
+        return view('restaurants.create');
     }
 
     /**
@@ -34,7 +35,10 @@ class MealController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Restaurant::create([
+        'name' => $request->restaurant_name,
+       ]);
+        return redirect()->route('restaurants.index');
     }
 
     /**
@@ -56,7 +60,10 @@ class MealController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+        $restaurant = Restaurant::find($id);
+        // dd($course);
+        return view('restaurants.edit', compact('restaurant')); 
     }
 
     /**
@@ -68,7 +75,12 @@ class MealController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $restaurant = Restaurant::find($id);
+        $restaurant->update([
+            'name' => $request->restaurant_name
+        ]);
+        return redirect()->route('restaurants.index');
     }
 
     /**
@@ -79,6 +91,8 @@ class MealController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $restaurant = Restaurant::find($id);
+        $restaurant->delete();
+        return redirect()->route('restaurants.index') ;    
     }
 }

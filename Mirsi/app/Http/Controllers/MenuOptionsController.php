@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\MenuOption;
 
-class ProcessController extends Controller
+class MenuOptionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class ProcessController extends Controller
      */
     public function index()
     {
-        return view('process');
+        //
     }
 
     /**
@@ -34,7 +35,15 @@ class ProcessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $price = request('price');
+        $number = request('number');
+        $price_for_one = $price/$number;
+        $random = OneDegreeMenu::inRandomOrder()
+        ->where('price', '<', $price_for_one)->first();
+       
+       
+        return view('process', compact('random','price', 'number', 'price_for_one'));
     }
 
     /**
@@ -80,5 +89,18 @@ class ProcessController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function first_submit($id)
+    {
+        $price = request('price');
+        $number = request('number');
+        $price_for_one = $price/$number;
+
+        $random = OneDegreeMenu::inRandomOrder()
+        ->where('price', '<', $price_for_one)->first();
+       
+       
+        return view('process', compact('random','price', 'number', 'price_for_one'));
     }
 }

@@ -14,7 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/courses', 'CourseTypeController@index')->name('course_type');
-Route::get('/restaurants', 'RestaurantController@index')->name('restaurants');
-Route::get('/process', 'Process@index')->name('process');
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('admin/routes', 'HomeController@admin')->middleware('admin');
+Route::resource('restaurants', 'RestaurantsController');
+Route::get('admin/routes/restaurants', 'RestaurantsController@index')->name('restaurants');
+Route::get('/choose_menu', 'HomeController@menu')->name('choose_menu');
+Route::resource('onedegree', 'OneDegreeMenusController');
+Route::resource('onedegree_choice', 'OneDegreeChoicesController');
+Route::resource('twodegree', 'TwoDegreeMenusController');
+Route::resource('threedegree', 'ThreeDegreeMenusController');
+Route::resource('fourdegree', 'FourDegreeMenusController');
+Route::resource('twodegree_choice', 'TwoDegreeChoicesController');
+Route::resource('threedegree_choice', 'ThreeDegreeChoicesController');
+Route::resource('fourdegree_choice', 'FourDegreeChoicesController');
