@@ -102,13 +102,17 @@ class MenuOptionsController extends Controller
     }
     public function partly(Request $request)
     {
-        $price = request('current_menu_price');
-        $number = request('accepted');
         $menu_one_id = request('menu_one_id');
+        $menu=OneDegreeMenu::find($menu_one_id);
+        $price_req = request('current_menu_price');
+        $number = request('accepted');
+        $price = $price_req-($menu->price*$number);
+        
+        
         $menu_two_id = request('menu_two_id');
         $menu_three_id = request('menu_three_id');
         $menu_four_id = request('menu_four_id');
-        $menu=OneDegreeMenu::find($menu_one_id);
+        
         MenuOption::create([
             'menu_one_id'=>$menu_one_id,
             'menu_two_id'=>$menu_two_id,
