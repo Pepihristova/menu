@@ -100,4 +100,26 @@ class MenuOptionsController extends Controller
     {
         //
     }
+    public function partly(Request $request)
+    {
+        $price = request('current_menu_price');
+        $number = request('accepted');
+        $menu_one_id = request('menu_one_id');
+        $menu_two_id = request('menu_two_id');
+        $menu_three_id = request('menu_three_id');
+        $menu_four_id = request('menu_four_id');
+        $menu=OneDegreeMenu::find($menu_one_id);
+        MenuOption::create([
+            'menu_one_id'=>$menu_one_id,
+            'menu_two_id'=>$menu_two_id,
+            'menu_three_id'=>$menu_three_id,
+            'menu_four_id'=>$menu_four_id,
+            'unique_id'=>'15',
+            'number_people'=>$number,
+            'current_menu_price'=>$price,
+            'status'=>'1'
+
+        ]);
+        return view('options.index', compact('price', 'number', 'menu_one_id', 'menu_two_id', 'menu_three_id', 'menu_four_id', 'menu' ));
+    }
 }
