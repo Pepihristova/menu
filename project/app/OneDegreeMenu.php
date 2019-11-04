@@ -17,4 +17,8 @@ class OneDegreeMenu extends Model
     {
     	return $this->belongsTo('App\Restaurant');
     }
+    public function menu_option()
+    {
+        return $this->belongsTo('App\MenuOption');
+    }
 }

@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
- 
+                    
                 <div class="card-body">
                     @if(auth()->user()->is_admin == 1)
                     <a href="{{url('admin/routes')}}">Admin1234</a>
@@ -34,6 +34,7 @@
                     <button type="submit" onclick="gotosite()">Update project</button>
                     @endif
                 </div>
+
             </div>
         </div>
     </div>
