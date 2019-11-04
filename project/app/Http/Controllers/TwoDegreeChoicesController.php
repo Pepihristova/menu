@@ -17,14 +17,13 @@ class TwoDegreeChoicesController extends Controller
         $number = request('number');
         $restaurant_id = request('restaurant_id');
         $price_for_one = $price/$number;
-        $random = TwoDegreeMenu::inRandomOrder()
+        $random = TwoDegreeMenu::with('restaurant')->inRandomOrder()
         ->where([
                 ['price', '<', $price_for_one],
                 ['restaurant_id', '=', $restaurant_id]
             ])->first();
        
-       
-        return view('twodegree_choice.index', compact('random','price', 'number', 'price_for_one'));
+        return view('twodegree_choice.index', compact('random','price', 'number', 'price_for_one', 'restaurant_id'));
     }
 
     /**

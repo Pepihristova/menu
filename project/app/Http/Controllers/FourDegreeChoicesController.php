@@ -24,7 +24,7 @@ class FourDegreeChoicesController extends Controller
             ])->first();
        
        
-        return view('fourdegree_choice.index', compact('random','price', 'number', 'price_for_one'));
+        return view('fourdegree_choice.index', compact('random','price', 'number', 'price_for_one', 'restaurant_id'));
     }
 
     /**

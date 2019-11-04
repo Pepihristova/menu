@@ -17,12 +17,11 @@ class OneDegreeChoicesController extends Controller
         $number = request('number');
         $restaurant_id = request('restaurant_id');
         $price_for_one = $price/$number;
-        $random = OneDegreeMenu::inRandomOrder()
+        $random = OneDegreeMenu::with('restaurant')->inRandomOrder()
         ->where([
                 ['price', '<', $price_for_one],
                 ['restaurant_id', '=', $restaurant_id]
             ])->first();
-       
        
         return view('onedegree_choice.index', compact('random','price', 'number', 'price_for_one', 'restaurant_id'));
     }

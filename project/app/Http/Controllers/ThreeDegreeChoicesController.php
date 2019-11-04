@@ -24,7 +24,7 @@ class ThreeDegreeChoicesController extends Controller
             ])->first();
        
        
-        return view('threedegree_choice.index', compact('random','price', 'number', 'price_for_one'));
+        return view('threedegree_choice.index', compact('random','price', 'number', 'price_for_one', 'restaurant_id'));
     }
 
     /**

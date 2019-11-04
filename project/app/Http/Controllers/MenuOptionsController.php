@@ -44,10 +44,18 @@ class MenuOptionsController extends Controller
         $menu_two_id = request('menu_two_id');
         $menu_three_id = request('menu_three_id');
         $menu_four_id = request('menu_four_id');
-        $menu=OneDegreeMenu::find($menu_one_id);
-        $menu_two=TwoDegreeMenu::find($menu_two_id);
-        $menu_three=ThreeDegreeMenu::find($menu_three_id);
-        $menu_four=FourDegreeMenu::find($menu_four_id);
+        if(isset($menu_one_id)){
+           $menu=OneDegreeMenu::find($menu_one_id);
+        }
+        if(isset($menu_two_id)){
+           $menu=TwoDegreeMenu::find($menu_two_id);
+        }
+        if(isset($menu_three_id)){
+           $menu=ThreeDegreeMenu::find($menu_three_id);
+        }
+        if(isset($menu_four_id)){
+           $menu=FourDegreeMenu::find($menu_four_id);
+        }
         MenuOption::create([
             'menu_one_id'=>$menu_one_id,
             'menu_two_id'=>$menu_two_id,
@@ -59,7 +67,8 @@ class MenuOptionsController extends Controller
             'status'=>'1'
 
         ]);
-        return view('options.index', compact('price', 'number', 'menu_one_id', 'menu_two_id', 'menu_three_id', 'menu_four_id', 'menu', 'menu_two', 'menu_three', 'menu_four' ));
+        // dd($menu);
+        return view('options.index', compact('price', 'number', 'menu_one_id', 'menu_two_id', 'menu_three_id', 'menu_four_id', 'menu'));
     }
 
     /**
