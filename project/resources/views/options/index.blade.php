@@ -2,15 +2,18 @@
 @section('content')
 <table border="1" bgcolor="white">
 	<tr>
-		<td colspan="6">Ресторант: {{$menu->restaurant->name}}</td>
+		<td colspan="8">Ресторант: {{$menu->restaurant->name}}</td>
 	</tr>
 	<tr>
 		<td>Салата</td>
 		<td>Напитка</td>
 		<td>Основно</td>
 		<td>Десерт</td>
-		<td>Цена</td>
+		<td>Цена на човек</td>
 		<td>Брой</td>
+		<td>Обща цена</td>
+		<td>Бакшиш</td>
+
 	</tr>
 	<tr>
 		<td>{{$menu->salad->name}}</td>
@@ -38,8 +41,11 @@
 			@endif
 		</td>
 		
-		<td>{{$price}}</td>
+		<td>{{$menu->price}}</td>
 		<td>{{$number}}</td>
+		<td>{{$menu->price * $number}}</td>
+		<td>{{$menu->price * $number * 0.05}}</td>
+
 	</tr>
 </table>
 @endsection

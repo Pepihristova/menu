@@ -26,6 +26,10 @@
                 background-size: 100%;
   
             }
+            main {
+                justify-content: center;
+                align-items: center;
+            }
            
 
             .full-height {
